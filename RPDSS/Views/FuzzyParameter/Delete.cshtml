@@ -1,0 +1,67 @@
+﻿@model RPDSS.DataLayer.Models.FuzzyParameterModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Fuzzy Parameter  Model</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GrowthStages)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GrowthStagesName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GrowthStages)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GrowthStages)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AbsoluteMin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AbsoluteMin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OptimumMin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OptimumMin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OptimumMax)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OptimumMax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AbsoluteMax)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AbsoluteMax)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        @Html.ActionLink("Delete", "Delete", new { Model.Id }) |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

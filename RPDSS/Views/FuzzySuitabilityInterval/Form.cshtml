@@ -1,0 +1,45 @@
+﻿@model RPDSS.DataLayer.Models.FuzzySuitabilityIntervalModel
+
+@{
+    ViewData["Title"] = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Fuzzy Suitability Interval Data</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("Save", "FuzzySuitabilityInterval"))
+            {
+            @Html.HiddenFor(m => m.Id)
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Name)
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Min)
+                @Html.TextBoxFor(m => m.Min, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Max)
+                @Html.TextBoxFor(m => m.Max, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary" style="width:80px">Save</button>
+                <a asp-action="Index" class="btn btn-info" style="width:80px">Back</a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,45 @@
+﻿@model RPDSS.DataLayer.Models.TemperatureDataEntryModel
+
+@{
+    ViewData["Title"] = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Temperature Data</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("Save", "Temperature"))
+            {
+            @Html.HiddenFor(m => m.Temperature.Id)
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Temperature.Month)
+                @Html.DropDownListFor(m => m.Temperature.Month, new SelectList(Model.Calendar, "Id", "Name"), "Select Month", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Temperature.Month)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Temperature.Year)
+                @Html.TextBoxFor(m => m.Temperature.Year, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Temperature.Year, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Temperature.Temperature)
+                @Html.TextBoxFor(m => m.Temperature.Temperature, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Temperature.Temperature, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary" style="width:80px">Save</button>
+                <a asp-action="Index" class="btn btn-info" style="width:80px">Back</a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

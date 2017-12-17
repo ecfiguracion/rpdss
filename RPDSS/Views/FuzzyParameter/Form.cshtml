@@ -1,0 +1,64 @@
+﻿@model RPDSS.DataLayer.Models.FuzzyParameterDataEntryModel
+
+@{
+    ViewData["Title"] = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Fuzzy Parameter Data</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("Save", "FuzzyParameter"))
+            {
+            @Html.HiddenFor(m => m.FuzzyParameter.Id)
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.FuzzyParameter.Type)
+                @Html.DropDownListFor(m => m.FuzzyParameter.Type, new SelectList(Model.ParameterTypes, "Id", "Name"), "Select Type", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FuzzyParameter.GrowthStages)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.FuzzyParameter.GrowthStages)
+                @Html.DropDownListFor(m => m.FuzzyParameter.GrowthStages, new SelectList(Model.GrowthStages, "Id", "Name"), "Select Growth Stage", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FuzzyParameter.GrowthStages)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.FuzzyParameter.AbsoluteMin)
+                @Html.TextBoxFor(m => m.FuzzyParameter.AbsoluteMin, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FuzzyParameter.AbsoluteMin, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.FuzzyParameter.OptimumMin)
+                @Html.TextBoxFor(m => m.FuzzyParameter.OptimumMin, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FuzzyParameter.OptimumMin, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.FuzzyParameter.OptimumMax)
+                @Html.TextBoxFor(m => m.FuzzyParameter.OptimumMax, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FuzzyParameter.OptimumMax, null, new { @class = "text-danger" })
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.FuzzyParameter.AbsoluteMax)
+                @Html.TextBoxFor(m => m.FuzzyParameter.AbsoluteMax, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.FuzzyParameter.AbsoluteMax, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary" style="width:80px">Save</button>
+                <a asp-action="Index" class="btn btn-info" style="width:80px">Back</a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

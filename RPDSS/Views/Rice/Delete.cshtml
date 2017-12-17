@@ -1,0 +1,68 @@
+﻿@model RPDSS.DataLayer.Models.RiceModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Rice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinRainfall)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MinRainfall)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxRainfall)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaxRainfall)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinTemperature)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MinTemperature)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxRainfall)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaxRainfall)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Maturity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Maturity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoilType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SoilType)
+        </dd>
+
+    </dl>
+    
+    <form asp-action="Delete">
+        @Html.ActionLink("Delete", "Delete", new { Model.Id }) |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

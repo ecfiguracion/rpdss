@@ -1,0 +1,69 @@
+﻿@model RPDSS.DataLayer.Models.RiceModel
+
+@{
+    ViewData["Title"] = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Rice Data</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("Save", "Rice"))
+            {
+            @Html.HiddenFor(m => m.Id)
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Name)
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.MinRainfall)
+                @Html.TextBoxFor(m => m.MinRainfall, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.MinRainfall)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.MaxRainfall)
+                @Html.TextBoxFor(m => m.MaxRainfall, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.MaxRainfall)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.MinTemperature)
+                @Html.TextBoxFor(m => m.MinTemperature, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.MinTemperature)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.MaxTemperature)
+                @Html.TextBoxFor(m => m.MaxTemperature, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.MaxTemperature)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Maturity)
+                @Html.TextBoxFor(m => m.Maturity, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Maturity)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.SoilType)
+                @Html.TextBoxFor(m => m.SoilType, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.SoilType)
+            </div>
+
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary" style="width:80px">Save</button>
+                <a asp-action="Index" class="btn btn-info" style="width:80px">Back</a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

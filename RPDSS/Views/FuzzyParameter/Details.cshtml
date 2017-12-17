@@ -1,0 +1,60 @@
+﻿@model RPDSS.DataLayer.Models.FuzzyParameterModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Fuzzy Parameter Details</h2>
+<hr />
+
+<div>    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TypeName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GrowthStages)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GrowthStagesName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GrowthStages)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.GrowthStages)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AbsoluteMin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AbsoluteMin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OptimumMin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OptimumMin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OptimumMax)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OptimumMax)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AbsoluteMax)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AbsoluteMax)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { Model.Id }) |
+    <a asp-action="Index">Back to List</a>
+</div>

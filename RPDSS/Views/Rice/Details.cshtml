@@ -1,0 +1,61 @@
+﻿@model RPDSS.DataLayer.Models.RiceModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Temperature Details</h2>
+<hr />
+
+<div>    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MinRainfall)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MinRainfall)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxRainfall)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaxRainfall)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MinTemperature)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MinTemperature)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxRainfall)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaxRainfall)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Maturity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Maturity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoilType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SoilType)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { Model.Id }) |
+    <a asp-action="Index">Back to List</a>
+</div>
