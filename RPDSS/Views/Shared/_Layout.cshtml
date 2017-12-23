@@ -1,8 +1,11 @@
-﻿<!DOCTYPE html>
+﻿+++++++++++++++++++++++++++++++++++++++++++++++++++++<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" shrink-to-fit="no" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
     <title>@ViewData["Title"] - RPDSS</title>
 
     <environment include="Development">
@@ -36,10 +39,25 @@
                     <li><a asp-area="" asp-controller="Rice" asp-action="Index">Rice</a></li>
                     <li><a asp-area="" asp-controller="FuzzyParameter" asp-action="Index">Fuzzy Parameters</a></li>
                     <li><a asp-area="" asp-controller="FuzzySuitabilityInterval" asp-action="Index">Fuzzy Suitability Interval</a></li>
+                    <li><a asp-area="" asp-controller="UserAccount" asp-action="Index">User Account</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+    <div class="text-center">
+        <h1><a href="~/images/crop-calendar-growth-tpr.jpg">
+    <img src="~/images/crop-calendar-growth-tpr.jpg" alt="calendar" style="width:75%">
+</a>
+</h1>
+        <div class="col-md-12">            
+               <div class="caption">
+                   <p>General overview transplanted growth duration use image from http://www.knowledgebank.irri.org</p>
+               </div>
+            
+        </div>
+
+    </div>
+
     <div class="container body-content">
         @RenderBody()
         <hr />

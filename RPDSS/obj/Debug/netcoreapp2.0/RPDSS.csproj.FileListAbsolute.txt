@@ -1,0 +1,11 @@
+C:\Users\sony vaio\rpdss\rpdss\RPDSS\bin\Debug\netcoreapp2.0\RPDSS.deps.json
+C:\Users\sony vaio\rpdss\rpdss\RPDSS\bin\Debug\netcoreapp2.0\RPDSS.runtimeconfig.json
+C:\Users\sony vaio\rpdss\rpdss\RPDSS\bin\Debug\netcoreapp2.0\RPDSS.runtimeconfig.dev.json
+C:\Users\sony vaio\rpdss\rpdss\RPDSS\bin\Debug\netcoreapp2.0\RPDSS.dll
+C:\Users\sony vaio\rpdss\rpdss\RPDSS\bin\Debug\netcoreapp2.0\RPDSS.pdb
+C:\Users\sony vaio\rpdss\rpdss\RPDSS\obj\Debug\netcoreapp2.0\RPDSS.csprojResolveAssemblyReference.cache
+C:\Users\sony vaio\rpdss\rpdss\RPDSS\obj\Debug\netcoreapp2.0\RPDSS.csproj.CoreCompileInputs.cache
+C:\Users\sony vaio\rpdss\rpdss\RPDSS\obj\Debug\netcoreapp2.0\RPDSS.AssemblyInfoInputs.cache
+C:\Users\sony vaio\rpdss\rpdss\RPDSS\obj\Debug\netcoreapp2.0\RPDSS.AssemblyInfo.cs
+C:\Users\sony vaio\rpdss\rpdss\RPDSS\obj\Debug\netcoreapp2.0\RPDSS.dll
+C:\Users\sony vaio\rpdss\rpdss\RPDSS\obj\Debug\netcoreapp2.0\RPDSS.pdb
