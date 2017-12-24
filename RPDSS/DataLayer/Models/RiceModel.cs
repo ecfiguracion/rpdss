@@ -10,23 +10,23 @@ namespace RPDSS.DataLayer.Models
     {
         public int Id { get; set; }
 
-        [Display(Name = "Rice Variety")]
+        [Display(Name = "Variety")]
         [Required]
         public string Name { get; set; }
 
-        [Display(Name = "Minimum Rainfall")]
+        [Display(Name = "Min. Rainfall")]
         [Required]
         public int MinRainfall { get; set; }
 
-        [Display(Name = "Maximum Rainfall")]
+        [Display(Name = "Max. Rainfall")]
         [Required]
         public int MaxRainfall { get; set; }
 
-        [Display(Name = "Minimum Temperature")]
+        [Display(Name = "Min. Temperature")]
         [Required]
         public int MinTemperature { get; set; }
 
-        [Display(Name = "Maximum Temperature")]
+        [Display(Name = "Max. Temperature")]
         [Required]
         public int MaxTemperature { get; set; }
 

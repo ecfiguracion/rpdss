@@ -6,12 +6,12 @@
     <title>@ViewData["Title"] - Admin Panel</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.superhero.min.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.superhero.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
@@ -46,30 +46,27 @@
                 <br />
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="list-group-item">
-                        <span class="badge">1</span>
+                        <span class="badge"></span>
                         <a asp-area="" asp-controller="Rice" asp-action="Index">Rice Profile</a>
                     </li>
                     <li class="list-group-item">
-                        <span class="badge">12</span>
+                        <span class="badge"></span>
                         <a asp-area="" asp-controller="Rainfall" asp-action="Index">Rainfall</a>
                     </li>
                     <li class="list-group-item">
-                        <span class="badge">24</span>
+                        <span class="badge"></span>
                         <a asp-area="" asp-controller="Temperature" asp-action="Index">Temperature</a>
                     </li>
                     <li class="list-group-item">
-                        <span class="badge">4</span>
+                        <span class="badge"></span>
                         <a asp-area="" asp-controller="FuzzyParameter" asp-action="Index">Fuzzy Parameters</a>
                     </li>
                     <li class="list-group-item">
-                        <span class="badge">6</span>
+                        <span class="badge"></span>
                         <a asp-area="" asp-controller="FuzzySuitabilityInterval" asp-action="Index">Fuzzy Suitability Interval</a>
                     </li>
                     <li class="list-group-item">
-                        <span class="badge">6</span>
+                        <span class="badge"></span>
                         <a asp-area="" asp-controller="UserAccount" asp-action="Index">User Accounts</a>
                     </li>
                 </ul>
