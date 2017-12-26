@@ -17,24 +17,17 @@
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.MinRainfall)
+                    @Html.DisplayNameFor(model => model.AvgYield)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.MaxRainfall)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.MinTemperature)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.MaxTemperature)
+                    @Html.DisplayNameFor(model => model.MaxYield)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Maturity)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.SoilType)
+                    @Html.DisplayNameFor(model => model.GrainSize)
                 </th>
-
             <th></th>
         </tr>
     </thead>
@@ -45,22 +38,16 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MinRainfall)
+                @Html.DisplayFor(modelItem => item.AvgYield)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MaxRainfall)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MinTemperature)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxTemperature)
+                @Html.DisplayFor(modelItem => item.MaxYield)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Maturity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SoilType)
+                @Html.DisplayFor(modelItem => item.GrainSize)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { item.Id }) |

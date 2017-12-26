@@ -8,61 +8,109 @@
 <h2>Rice Data</h2>
 <hr />
 
-<div class="row">
-    <div class="col-md-4">
-        @using (Html.BeginForm("Save", "Rice"))
-            {
-            @Html.HiddenFor(m => m.Id)
+@using (Html.BeginForm("Save", "Rice"))
+    {
+        @Html.HiddenFor(m => m.Id)
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Name)
+                </div>
 
-            <div class="form-group">
-                @Html.LabelFor(m => m.Name)
-                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Name)
+                <div class="form-group">
+                    @Html.LabelFor(m => m.AvgYield)
+                    @Html.TextBoxFor(m => m.AvgYield, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.AvgYield)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.MaxYield)
+                    @Html.TextBoxFor(m => m.MaxYield, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.MaxYield)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Maturity)
+                    @Html.TextBoxFor(m => m.Maturity, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Maturity)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Height)
+                    @Html.TextBoxFor(m => m.Height, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Height)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.GrainSize)
+                    @Html.TextBoxFor(m => m.GrainSize, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.GrainSize)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.MillingRecovery)
+                    @Html.TextBoxFor(m => m.MillingRecovery, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.MillingRecovery)
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.EatingQuality)
+                    @Html.TextBoxFor(m => m.EatingQuality, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.EatingQuality)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Notes)
+                    @Html.TextBoxFor(m => m.Notes, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Notes)
+                </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(m => m.MinRainfall)
-                @Html.TextBoxFor(m => m.MinRainfall, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.MinRainfall)
-            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.GrowthStage1)
+                    @Html.TextBoxFor(m => m.GrowthStage1, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.GrowthStage1)
+                </div>
 
-            <div class="form-group">
-                @Html.LabelFor(m => m.MaxRainfall)
-                @Html.TextBoxFor(m => m.MaxRainfall, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.MaxRainfall)
-            </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.GrowthStage2)
+                    @Html.TextBoxFor(m => m.GrowthStage2, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.GrowthStage2)
+                </div>
 
-            <div class="form-group">
-                @Html.LabelFor(m => m.MinTemperature)
-                @Html.TextBoxFor(m => m.MinTemperature, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.MinTemperature)
-            </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.GrowthStage3)
+                    @Html.TextBoxFor(m => m.GrowthStage3, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.GrowthStage3)
+                </div>
 
-            <div class="form-group">
-                @Html.LabelFor(m => m.MaxTemperature)
-                @Html.TextBoxFor(m => m.MaxTemperature, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.MaxTemperature)
-            </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.GrowthStage4)
+                    @Html.TextBoxFor(m => m.GrowthStage4, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.GrowthStage4)
+                </div>
 
-            <div class="form-group">
-                @Html.LabelFor(m => m.Maturity)
-                @Html.TextBoxFor(m => m.Maturity, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Maturity)
+                <div class="form-group">
+                    @Html.LabelFor(m => m.GrowthStage5)
+                    @Html.TextBoxFor(m => m.GrowthStage5, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.GrowthStage5)
+                </div>
             </div>
+        </div>
 
-            <div class="form-group">
-                @Html.LabelFor(m => m.SoilType)
-                @Html.TextBoxFor(m => m.SoilType, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.SoilType)
+        <div class="row">
+            <div class="col-md-4" style="margin-bottom:50px;">
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary" style="width:80px">Save</button>
+                    <a asp-action="Index" class="btn btn-info" style="width:80px">Back</a>
+                </div>
             </div>
-
-            <div class="btn-group">
-                <button type="submit" class="btn btn-primary" style="width:80px">Save</button>
-                <a asp-action="Index" class="btn btn-info" style="width:80px">Back</a>
-            </div>
-        }
-    </div>
-</div>
+        </div>
+}
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

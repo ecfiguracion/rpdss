@@ -21,8 +21,9 @@ namespace RPDSS.DataLayer.Repositories
 
         public IEnumerable<RiceModel> GetAll()
         {
-            var sql = @"SELECT id,name,minrainfall,maxrainfall,mintemperature,
-                            maxtemperature,maturity,soiltype
+            var sql = @"SELECT id,name,avgyield,maxyield,maturity,height,grainsize,
+                            millingrecovery,eatingquality,notes, growthstage1,
+                            growthstage2,growthstage3,growthstage4,growthstage5
                         FROM rice";
             var lists = db.Query<RiceModel>(sql);
             return lists;
@@ -30,8 +31,9 @@ namespace RPDSS.DataLayer.Repositories
 
         public RiceModel GetById(int id)
         {
-            var sql = @"SELECT id,name,minrainfall,maxrainfall,mintemperature,
-                            maxtemperature,maturity,soiltype
+            var sql = @"SELECT id,name,avgyield,maxyield,maturity,height,grainsize,
+                            millingrecovery,eatingquality,notes, growthstage1,
+                            growthstage2,growthstage3,growthstage4,growthstage5
                         FROM rice
                         WHERE id = @id";
             var item = db.QueryFirst<RiceModel>(sql,new { id } );
@@ -40,18 +42,29 @@ namespace RPDSS.DataLayer.Repositories
 
         public void New(RiceModel model)
         {
-            var sql = @"INSERT INTO rice(name,minrainfall,maxrainfall,mintemperature,maxtemperature,maturity,soiltype)
-                    VALUES (@name,@minrainfall,@maxrainfall,@mintemperature,@maxtemperature,@maturity,@soiltype)
+            var sql = @"INSERT INTO rice(name,avgyield,maxyield,maturity,height,grainsize,
+                            millingrecovery,eatingquality,notes, growthstage1,
+                            growthstage2,growthstage3,growthstage4,growthstage5)
+                    VALUES (@name,@avgyield,@maxyield,@maturity,@height,@grainsize,
+                            @millingrecovery,@eatingquality,@notes, @growthstage1,
+                            @growthstage2,@growthstage3,@growthstage4,@growthstage5)
                     SELECT CAST(SCOPE_IDENTITY() AS int)";
             var id = db.Query<int>(sql, new
             {
                 model.Name,
-                model.MinRainfall,
-                model.MaxRainfall,
-                model.MinTemperature,
-                model.MaxTemperature,
+                model.AvgYield,
+                model.MaxYield,
                 model.Maturity,
-                model.SoilType
+                model.Height,
+                model.GrainSize,
+                model.MillingRecovery,
+                model.EatingQuality,
+                model.Notes,
+                model.GrowthStage1,
+                model.GrowthStage2,
+                model.GrowthStage3,
+                model.GrowthStage4,
+                model.GrowthStage5
             }).Single();
             model.Id = id;
         }
@@ -60,21 +73,35 @@ namespace RPDSS.DataLayer.Repositories
         {
             var sql = @"UPDATE rice SET
                             name = @name,
-                            minrainfall = @minrainfall,
-                            maxrainfall = @maxrainfall,
-                            mintemperature = @mintemperature,
-                            maxtemperature = @maxtemperature,
+                            avgyield = @avgyield,
+                            maxyield = @maxyield,
                             maturity = @maturity,
-                            soiltype = @soiltype
+                            height = @height,
+                            grainsize = @grainsize,
+                            millingrecovery = @millingrecovery,
+                            eatingquality = @eatingquality,
+                            notes = @notes,
+                            growthstage1 = @growthstage1,
+                            growthstage2 = @growthstage2,
+                            growthstage3 = @growthstage3,
+                            growthstage4 = @growthstage4,
+                            growthstage5 = @growthstage5
                         WHERE id = @id";
             db.Execute(sql, new {
                 model.Name,
-                model.MinRainfall,
-                model.MaxRainfall,
-                model.MinTemperature,
-                model.MaxTemperature,
+                model.AvgYield,
+                model.MaxYield,
                 model.Maturity,
-                model.SoilType,
+                model.Height,
+                model.GrainSize,
+                model.MillingRecovery,
+                model.EatingQuality,
+                model.Notes,
+                model.GrowthStage1,
+                model.GrowthStage2,
+                model.GrowthStage3,
+                model.GrowthStage4,
+                model.GrowthStage5,
                 model.Id
             });
         }

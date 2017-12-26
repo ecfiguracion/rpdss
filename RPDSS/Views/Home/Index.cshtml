@@ -1,4 +1,6 @@
-﻿@{
+﻿@model RPDSS.DataLayer.Models.HomeModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -35,50 +37,117 @@
         <div class="form-group">
             <div class="form-group">
                 <label for="year">Year</label>
-                <select class="form-control" id="year">
-                    <option>2012</option>
-                    <option>2013</option>
-                    <option>2014</option>
-                    <option>2015</option>
-                    <option>2016</option>
-                    <option>Projected</option>
-                </select>
+                @Html.DropDownListFor(m => m.SelectedYear.Id, new SelectList(Model.Years, "Id", "Name"), "Select Year", new { @class = "form-control", @id="yearpsDropdown" })
             </div>
         </div>       
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
         <div class="form-group">
             <div class="form-group">
-                <label for="growthstages">Growth Stages</label>
-                <select class="form-control" id="growthstages">
-                    <option>Nursery</option>
-                    <option>Preparatory</option>
-                    <option>Field</option>
-                </select>
+                <label for="year">Growth Stages</label>
+                @Html.DropDownListFor(m => m.SelectedGrowthStages.Id, new SelectList(Model.GrowthStages, "Id", "Name"), "Select Growth Stages", new { @class = "form-control", @id= "growthStagesDropdown" })
             </div>
         </div>
     </div>
     <div class="col-md-4">
-        <div class="form-group">
-            <div class="form-group">
-                <label for="growthstages">Rice Variety</label>
-                <select class="form-control" id="growthstages">
-                    <option>PSB Rc2 (NAHALIN)</option>
-                    <option>PSB Rc4 (MOLAWIN)</option>
-                    <option>NSIC Rc302 (Tubigan 25)</option>
-                    <option>NSIC Rc166H (Mestiso 10)</option>
-                </select>
-            </div>
-        </div>
+        <button id="buttonGraph" type="button" class="btn btn-success" style="margin-top:23px;"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Refresh</button>
     </div>
 
 </div>
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7">
         <canvas id="plantingSeasonChart"></canvas>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
+        <h4>Best Growth Stages Months</h4>
+        <div class="well">
+            <dl class="dl-horizontal">
+                <dt>Nursery</dt>
+                <dd>Feb, March</dd>
+                <dt>Preparation</dt>
+                <dd>March, April</dd>
+                <dt>Panicle Initiation</dt>
+                <dd>April</dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<div>
+    <input id="showTempRainData" type="checkbox" checked /> Show Temperature and Rainfall Data
+</div>
+<div id="temprainSection" class="row">
+    <div class="col-md-6">
+        <h4>Temperature</h4>
+        <table id="temperatureTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Year</th>
+                    <th>Temperature</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h4>Rainfall</h4>
+        <table id ="rainfallTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Year</th>
+                    <th>Temperature</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--End: Planting Season-->
+
+<!--Crop Calendar -->
+<h3><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Crop Calendar</h3>
+<div class="row">
+    <div class="col-md-7">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="year">Rice Variety</label>
+                        @Html.DropDownListFor(m => m.SelectedRiceVariety.Id, new SelectList(Model.RiceVarieties, "Id", "Name"), "Select Rice Variety", new { @class = "form-control", @id = "riceDropdown" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="startdate">Start Date</label>
+                    <input id="startDateTextbox" type="text" class="form-control" placeholder="Start Date">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button id="buttonCropCalendar" type="button" class="btn btn-success" style="margin-top:23px;"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Refresh</button>
+            </div>
+        </div>
+        <div class="row">
+            <table id="calendarTable" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Growth Stages</th>
+                        <th>Suggested Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-5">
         <h4>Rice Profile</h4>
         <div class="well">
             <dl class="dl-horizontal">
@@ -96,160 +165,175 @@
                 <dd>Muddy</dd>
             </dl>
         </div>
-
-        <h4>Best Growth Stages Months</h4>
-        <div class="well">
-            <dl class="dl-horizontal">
-                <dt>Nursery</dt>
-                <dd>Feb, March</dd>
-                <dt>Preparation</dt>
-                <dd>March, April</dd>
-                <dt>Panicle Initiation</dt>
-                <dd>April</dd>
-            </dl>
-        </div>
     </div>
 </div>
 
-<div>
-    <input type="checkbox" checked /> Show Temperature and Rainfall Data
-</div>
-<div class="row">
 
-    <div class="col-md-6">
-        <h4>Temperature</h4>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Month</th>
-                    <th>Year</th>
-                    <th>Temperature</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Jan</td>
-                    <td>2014</td>
-                    <td>23</td>
-                </tr>
-                <tr>
-                    <td>Feb</td>
-                    <td>2014</td>
-                    <td>43</td>
-                </tr>
-                <tr>
-                    <td>Mar</td>
-                    <td>2014</td>
-                    <td>44</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-6">
-        <h4>Rainfall</h4>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Month</th>
-                    <th>Year</th>
-                    <th>Temperature</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Jan</td>
-                    <td>2014</td>
-                    <td>98</td>
-                </tr>
-                <tr>
-                    <td>Feb</td>
-                    <td>2014</td>
-                    <td>12</td>
-                </tr>
-                <tr>
-                    <td>Mar</td>
-                    <td>2014</td>
-                    <td>87</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<!--End: Planting Season-->
-
-<!--Crop Calendar -->
-<h3><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Crop Calendar</h3>
-<div class="row">
-    <div class="col-md-4">
-        <div class="form-group">
-            <div class="form-group">
-                <label for="growthstages">Rice Variety</label>
-                <select class="form-control" id="growthstages">
-                    <option>PSB Rc2 (NAHALIN)</option>
-                    <option>PSB Rc4 (MOLAWIN)</option>
-                    <option>NSIC Rc302 (Tubigan 25)</option>
-                    <option>NSIC Rc166H (Mestiso 10)</option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2">
-        <div class="form-group">
-            <label for="startdate">Start Date</label>
-            <input type="text" class="form-control" id="startdate" placeholder="Start Date">
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Growth Stages</th>
-                <th>Suggested Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Nursery</td>
-                <td>Jan 5, 2018</td>
-            </tr>
-            <tr>
-                <td>Preparation</td>
-                <td>March 2, 2018</td>
-            </tr>
-            <tr>
-                <td>Panicle Preparation</td>
-                <td>April 8, 2018</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
 <!--Crop Calendar-->
 
 @section scripts {
     <script>
-        $(document).ready(function () {
+        function refreshPlantingSeasonGraph(graphData) {
             var ctx = document.getElementById("plantingSeasonChart").getContext("2d");
-            var chart = new Chart(ctx, {
-                // The type of chart we want to create
-                type: 'line',
 
+            var lineChartData = {
+                labels: graphData.months,
                 // The data for our dataset
-                data: {
-                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-                    datasets: [{
-                        label: "Historical Planting Season",
-                        backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(255, 99, 132)',
-                        data: [0, 10, 5, 2, 20, 30, 45],
+                datasets: [
+                    {
+                        label: "Rainfall",
+                        fill: false,
+                        backgroundColor: 'rgb(70, 130, 180)',
+                        borderColor: 'rgb(70, 130, 180)',
+                        data: graphData.rainfalls,
+                        yAxisID: "y-axis-1"
+                    },
+                    {
+                        label: "Temperature",
+                        fill: false,
+                        backgroundColor: 'rgb(220,20,60)',
+                        borderColor: 'rgb(220,20,60)',
+                        data: graphData.temperatures,
+                        yAxisID: "y-axis-2"
                     }]
-                },
+            };
 
-                // Configuration options go here
-                options: {}
+            var chart = Chart.Line(ctx, {
+                // The type of chart we want to create
+                data: lineChartData,
+                options: {
+                    responsive: true,
+                    hoverMode: 'index',
+                    stacked: false,
+                    title: {
+                        display: true,
+                        text: 'Planting Season'
+                    },
+                    scales: {
+                        yAxes: [{
+                            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                            display: true,
+                            position: "left",
+                            id: "y-axis-1",
+                        }, {
+                            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                            display: true,
+                            position: "right",
+                            id: "y-axis-2",
+
+                            // grid line settings
+                            gridLines: {
+                                drawOnChartArea: false, // only want the grid lines for one axis to show up
+                            },
+                        }],
+                    }
+                }
             });
+        }
+
+        function populateTemperaturesData(data) {
+            $('#temperatureTable tbody').empty();
+
+            if ($('#showTempRainData').is(":checked")) {
+                $('#temprainSection').show();
+
+                var trHTML = '';
+
+                $.each(data.temperatureData, function (i, item) {
+                    trHTML += '<tr><td>' + item.calendar + '</td><td>' + item.year + '</td><td>' + item.temperature + '</td></tr>';
+                });
+
+                $('#temperatureTable').append(trHTML);
+            } else {
+                $('#temprainSection').hide();                
+            }
+        }
+
+        function populateRainfallData(data) {
+            $('#rainfallTable tbody').empty();
+
+            if ($('#showTempRainData').is(":checked")) {
+                var trHTML = '';
+
+                $.each(data.rainfallData, function (i, item) {
+                    trHTML += '<tr><td>' + item.calendar + '</td><td>' + item.year + '</td><td>' + item.rainfall + '</td></tr>';
+                });
+
+                $('#rainfallTable').append(trHTML);
+            }
+        }
+
+        function RefreshPlantingSeasonData() {
+            var paramYear = $('#yearpsDropdown :selected').val();
+            var paramGrowthStages = $('#growthStagesDropdown :selected').val();
+
+            if (paramYear > 0 && paramGrowthStages > 0) {
+                $.ajax({
+                    type: "GET",
+                    url: "api/home/graphs",
+                    data: { year: paramYear, growthstages: paramGrowthStages },
+                    contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+                        refreshPlantingSeasonGraph(response);
+                        populateTemperaturesData(response);
+                        populateRainfallData(response);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            }
+        }
+
+        function populateCropCalendarData(data) {
+            $('#calendarTable tbody').empty();
+
+            var trHTML = '';
+
+            $.each(data.calendarData, function (i, item) {
+                trHTML += '<tr><td>' + item.growthStage + '</td><td>' + item.suggestedDate + '</td></tr>';
+            });
+
+            $('#calendarTable').append(trHTML);
+        }
+
+        function RefreshCropCalendarData() {
+            var paramRiceVariety = $('#riceDropdown :selected').val();
+            var paramStartDate = $('#startDateTextbox').val();
+
+            if (paramRiceVariety > 0 && paramStartDate.length > 0) {
+                $.ajax({
+                    type: "GET",
+                    url: "api/home/calendar",
+                    data: { ricevariety: paramRiceVariety, startDate: paramStartDate },
+                    contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+                        populateCropCalendarData(response);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            }
+        }
+
+        $(document).ready(function () {
+            RefreshPlantingSeasonData();
+            //RefreshCropCalendarData();
+        });
+
+        $("#buttonGraph").click(function () {
+            RefreshPlantingSeasonData();
+        });
+
+        $("#buttonCropCalendar").click(function () {
+            RefreshCropCalendarData();
         })
     </script>
 }
