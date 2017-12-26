@@ -151,20 +151,23 @@
         <h4>Rice Profile</h4>
         <div class="well">
             <dl class="dl-horizontal">
-                <dt>Variety</dt>
+                <dt>Variety:</dt>
                 <dd id="riceVariety"></dd>
 
-                <dt>Average Yield</dt>
-                <dd id="averageYield">20.00</dd>
+                <dt>Average Yield:</dt>
+                <dd id="avgYield"></dd>
 
-                <dt>Max. Rainfall</dt>
-                <dd>50.00</dd>
-                <dt>Min. Temperature</dt>
-                <dd>190.00</dd>
-                <dt>Max. Temperature</dt>
-                <dd>200.00</dd>
-                <dt>Soil Type</dt>
-                <dd>Muddy</dd>
+                <dt>Maturity:</dt>
+                <dd id="maturity"></dd>
+
+                <dt>Reaction to pests & dis:</dt>
+                <dd id="react"></dd>
+
+                <dt>Height:</dt>
+                <dd id="height"></dd>
+
+                <dt>Eating quality:</dt>
+                <dd id="eatingQuality"></dd>
             </dl>
         </div>
     </div>
@@ -302,8 +305,14 @@
             $('#calendarTable').append(trHTML);
         }
 
+
         function populateRiceProfile(data) {
-            $('#riceVariety').text(data.riceProfile.name);
+            $('#riceVariety').text(data.riceProfile.name); 
+            $('#avgYield').text(data.riceProfile.avgYield);
+            $('#maturity').text(data.riceProfile.maturity);
+            $('#react').text(data.riceProfile.notes);
+            $('#height').text(data.riceProfile.height);
+            $('#eatingQuality').text(data.riceProfile.eatingQuality);        
 
         }
 
