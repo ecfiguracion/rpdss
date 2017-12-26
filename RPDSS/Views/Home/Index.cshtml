@@ -37,7 +37,7 @@
         <div class="form-group">
             <div class="form-group">
                 <label for="year">Year</label>
-                @Html.DropDownListFor(m => m.SelectedYear.Id, new SelectList(Model.Years, "Id", "Name"), "Select Year", new { @class = "form-control", @id="yearpsDropdown" })
+                @Html.DropDownListFor(m => m.SelectedYear.Id, new SelectList(Model.Years, "Id", "Name"), "Select Year", new { @class = "form-control", @id="yearsDropdown" })
             </div>
         </div>       
     </div>
@@ -152,9 +152,11 @@
         <div class="well">
             <dl class="dl-horizontal">
                 <dt>Variety</dt>
-                <dd>R23D</dd>
-                <dt>Min. Rainfall</dt>
-                <dd>20.00</dd>
+                <dd id="riceVariety"></dd>
+
+                <dt>Average Yield</dt>
+                <dd id="averageYield">20.00</dd>
+
                 <dt>Max. Rainfall</dt>
                 <dd>50.00</dd>
                 <dt>Min. Temperature</dt>
@@ -264,7 +266,7 @@
         }
 
         function RefreshPlantingSeasonData() {
-            var paramYear = $('#yearpsDropdown :selected').val();
+            var paramYear = $('#yearsDropdown :selected').val();
             var paramGrowthStages = $('#growthStagesDropdown :selected').val();
 
             if (paramYear > 0 && paramGrowthStages > 0) {
@@ -300,6 +302,11 @@
             $('#calendarTable').append(trHTML);
         }
 
+        function populateRiceProfile(data) {
+            $('#riceVariety').text(data.riceProfile.name);
+
+        }
+
         function RefreshCropCalendarData() {
             var paramRiceVariety = $('#riceDropdown :selected').val();
             var paramStartDate = $('#startDateTextbox').val();
@@ -312,6 +319,7 @@
                     contentType: "application/json; charset=utf-8",
                     success: function (response) {
                         populateCropCalendarData(response);
+                        populateRiceProfile(response);
                     },
                     failure: function (response) {
                         alert(response.responseText);
