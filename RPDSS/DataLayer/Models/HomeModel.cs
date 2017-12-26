@@ -28,14 +28,16 @@ namespace RPDSS.DataLayer.Models
         public ICollection<decimal> Temperatures { get; set; }
         public IEnumerable<RainfallModel> RainfallData { get; set; }
         public IEnumerable<TemperatureModel> TemperatureData { get; set; }
-        public ICollection<PlantingSuitabilityModel> PlantingSuitability { get; set; }
+        public ICollection<PlantingSuitabilityModel> TemperatureSuitability { get; set; }
+        public ICollection<PlantingSuitabilityModel> RainfallSuitability { get; set; }
 
         public GraphData()
         {
             this.Months = new List<string>();
             this.Rainfalls = new List<decimal>();
             this.Temperatures = new List<decimal>();
-            this.PlantingSuitability = new List<PlantingSuitabilityModel>();
+            this.TemperatureSuitability = new List<PlantingSuitabilityModel>();
+            this.RainfallSuitability = new List<PlantingSuitabilityModel>();
         }
     }
 
