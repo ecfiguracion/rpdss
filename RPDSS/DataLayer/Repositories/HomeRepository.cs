@@ -238,7 +238,7 @@ namespace RPDSS.DataLayer.Repositories
             }
             else if ((a <= x) && (x <= b))
             {
-                result = x - a;
+                result = (x - a) / ( b - a );
             }
             else if ((b <= x) && (x <= c))
             {
