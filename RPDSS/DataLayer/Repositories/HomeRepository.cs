@@ -71,7 +71,8 @@ namespace RPDSS.DataLayer.Repositories
             var fuzzySuitabilityInterval = db.Query<FuzzySuitabilityIntervalModel>(sql);
             foreach (var item in fuzzySuitabilityInterval)
             {
-                graphData.PlantingSuitability.Add(new PlantingSuitabilityModel() { PlantingSuitability = item, Months=string.Empty });
+                graphData.TemperatureSuitability.Add(new PlantingSuitabilityModel() { PlantingSuitability = item, Months=string.Empty });
+                graphData.RainfallSuitability.Add(new PlantingSuitabilityModel() { PlantingSuitability = item, Months = string.Empty });
             }
 
             // Temperatures
@@ -154,9 +155,20 @@ namespace RPDSS.DataLayer.Repositories
                 graphData.Temperatures.Add(fuzzyTempValue);
 
                 // Check for suitability
-                foreach (var suitability in graphData.PlantingSuitability)
+                foreach (var suitability in graphData.TemperatureSuitability)
                 {
-                    if (this.IsSuitable(suitability.PlantingSuitability,fuzzyTempValue,fuzzyRainfallValue))
+                    if (this.IsSuitable(suitability.PlantingSuitability,fuzzyTempValue,0))
+                    {
+                        if (suitability.Months.Length > 0)
+                            suitability.Months += "," + item.Name;
+                        else
+                            suitability.Months += item.Name;
+                    }
+                }
+
+                foreach (var suitability in graphData.RainfallSuitability)
+                {
+                    if (this.IsSuitable(suitability.PlantingSuitability, 0, fuzzyRainfallValue))
                     {
                         if (suitability.Months.Length > 0)
                             suitability.Months += "," + item.Name;
@@ -171,11 +183,16 @@ namespace RPDSS.DataLayer.Repositories
 
         private bool IsSuitable(FuzzySuitabilityIntervalModel suitability, decimal temp, decimal rainfall)
         {
-            if ((temp >= suitability.Min && temp <= suitability.Max) &&
-                (rainfall >= suitability.Min && rainfall <= suitability.Max))
+            if (temp > 0)
             {
-                return true;
+                return temp >= suitability.Min && temp <= suitability.Max;
             }
+
+            if (rainfall > 0)
+            {
+                return rainfall >= suitability.Min && rainfall <= suitability.Max;
+            }
+
             return false;
         }
 

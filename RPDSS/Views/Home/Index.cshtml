@@ -56,15 +56,21 @@
 </div>
 
 <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-8">
         <canvas id="plantingSeasonChart"></canvas>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-4">
         <h4>Best Growth Stages Months</h4>
         <div class="well">
-            <dl id="plantingSuitability" class="dl-horizontal">
+            <h5>Rainfall</h5>
+            <dl id="suitabilityRainfall" class="dl-horizontal"></dl>
+        </div>
+        <div class="well">
+            <h5>Temperature</h5>
+            <dl id="suitabilityTemperature" class="dl-horizontal">
             </dl>
         </div>
+
     </div>
 </div>
 
@@ -262,16 +268,22 @@
             }
         }
 
-        function populatePlantingSuitability(data) {
-            $('#plantingSuitability').empty();
+        function populatesuitabilityTemperature(data) {
 
+            $('#suitabilityTemperature').empty();
             var trHTML = '';
-
-            $.each(data.plantingSuitability, function (i, item) {
+            $.each(data.temperatureSuitability, function (i, item) {
                 trHTML += '<dt>' + item.plantingSuitability.name + '</dt><dd>' + item.monthsDisplay + '</dd>';
             });
+            $('#suitabilityTemperature').append(trHTML);
 
-            $('#plantingSuitability').append(trHTML);
+
+            $('#suitabilityRainfall').empty();
+            trHTML = '';
+            $.each(data.rainfallSuitability, function (i, item) {
+                trHTML += '<dt>' + item.plantingSuitability.name + '</dt><dd>' + item.monthsDisplay + '</dd>';
+            });
+            $('#suitabilityRainfall').append(trHTML);
         }
 
         function RefreshPlantingSeasonData() {
@@ -288,7 +300,7 @@
                         refreshPlantingSeasonGraph(response);
                         populateTemperaturesData(response);
                         populateRainfallData(response);
-                        populatePlantingSuitability(response);
+                        populatesuitabilityTemperature(response);
                     },
                     failure: function (response) {
                         alert(response.responseText);
@@ -361,3 +373,25 @@
         })
     </script>
 }
+
+<style>
+    #suitabilityRainfall dt {
+        width: 100px !important;
+        font-size: 12px;
+    }
+
+    #suitabilityRainfall dd {
+        margin-left: 110px !important;
+        font-size: 12px;
+    }
+
+    #suitabilityTemperature dt {
+        font-size: 12px;
+        width: 100px !important;
+    }
+
+    #suitabilityTemperature dd {
+        font-size: 12px;
+        margin-left: 110px !important;
+    }
+</style>
