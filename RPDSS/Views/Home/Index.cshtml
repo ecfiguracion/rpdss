@@ -33,31 +33,33 @@
 <!--Planting Season-->
 <h3><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Planting Season</h3>
 <div class="row">
-    <div class="col-md-2">
-        <div class="form-group">
-            <div class="form-group">
-                <label for="year">Year</label>
-                @Html.DropDownListFor(m => m.SelectedYear.Id, new SelectList(Model.Years, "Id", "Name"), "Select Year", new { @class = "form-control", @id="yearsDropdown" })
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="year">Year</label>
+                        @Html.DropDownListFor(m => m.SelectedYear.Id, new SelectList(Model.Years, "Id", "Name"), "Select Year", new { @class = "form-control", @id = "yearsDropdown" })
+                    </div>
+                </div>
             </div>
-        </div>       
-    </div>
-    <div class="col-md-3">
-        <div class="form-group">
-            <div class="form-group">
-                <label for="year">Growth Stages</label>
-                @Html.DropDownListFor(m => m.SelectedGrowthStages.Id, new SelectList(Model.GrowthStages, "Id", "Name"), "Select Growth Stages", new { @class = "form-control", @id= "growthStagesDropdown" })
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="form-group">
+                        <label for="year">Growth Stages</label>
+                        @Html.DropDownListFor(m => m.SelectedGrowthStages.Id, new SelectList(Model.GrowthStages, "Id", "Name"), "Select Growth Stages", new { @class = "form-control", @id = "growthStagesDropdown" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button id="buttonGraph" type="button" class="btn btn-success" style="margin-top:23px;"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Refresh</button>
             </div>
         </div>
-    </div>
-    <div class="col-md-4">
-        <button id="buttonGraph" type="button" class="btn btn-success" style="margin-top:23px;"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Refresh</button>
-    </div>
-
-</div>
-
-<div class="row">
-    <div class="col-md-8">
-        <canvas id="plantingSeasonChart"></canvas>
+        <div class="row">
+            <div class="col-md-12">
+                <canvas id="plantingSeasonChart"></canvas>
+            </div>
+        </div>
     </div>
     <div class="col-md-4">
         <h4>Best Growth Stages Months</h4>
@@ -67,10 +69,8 @@
         </div>
         <div class="well">
             <h5>Temperature</h5>
-            <dl id="suitabilityTemperature" class="dl-horizontal">
-            </dl>
+            <dl id="suitabilityTemperature" class="dl-horizontal"></dl>
         </div>
-
     </div>
 </div>
 
