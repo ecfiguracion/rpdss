@@ -1,0 +1,40 @@
+﻿@model RPDSS.DataLayer.Models.LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="row">
+    <div class="col-md-offset-4 col-md-4">
+        <h2>User Authentication</h2>
+        <hr />
+
+        @using (Html.BeginForm("Authenticate", "Home"))
+            {
+            <div class="form-group">
+                @Html.LabelFor(m => m.Username)
+                @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Username, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })
+            </div>
+
+            <div class="btn-group">
+                <button type="submit" class="btn btn-primary" style="width:80px">Login</button>
+            </div>
+
+            <div class="form-group">
+                <br />
+                @Html.ValidationSummary()
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

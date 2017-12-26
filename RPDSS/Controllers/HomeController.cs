@@ -24,6 +24,22 @@ namespace RPDSS.Controllers
             return View(_model.GetLookUps());
         }
 
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult Authenticate(LoginModel login)
+        {
+            if (_model.Authenticate(login))
+                return RedirectToAction("Index", "Rice");
+            else
+            {
+                ModelState.AddModelError("", "Invalid username or password. Please try again.");
+                return View("Login");
+            }
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

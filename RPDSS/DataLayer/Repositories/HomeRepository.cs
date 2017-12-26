@@ -19,6 +19,14 @@ namespace RPDSS.DataLayer.Repositories
             db = new SqlConnection(config.GetConnectionString(ConfigConstants.DefaultConnection));
         }
 
+        public bool Authenticate(LoginModel login)
+        {
+            var sql = @"SELECT id FROM useraccount
+                        WHERE username = @username AND password = @password";
+            var id = db.QueryFirstOrDefault<int>(sql, new { login.Username, login.Password });
+            return id > 0;
+        }
+
         public HomeModel GetLookUps()
         {
             var homeModel = new HomeModel();
@@ -45,16 +53,13 @@ namespace RPDSS.DataLayer.Repositories
             return homeModel;
         }
 
+
         public GraphData GetGraphsData(int year, int growthStageId)
         {
             var graphData = new GraphData();
 
-            // Growth Stages
-            var sql = @"SELECT id,name FROM growthstages";
-            var growthStages = db.Query<LookupModel>(sql);
-
             // Fuzzy Parameters
-            sql = @"SELECT fp.id,fp.type,fp.growthstages,gs.name growthstagesname,fp.absolutemin,
+            var sql = @"SELECT fp.id,fp.type,fp.growthstages,gs.name growthstagesname,fp.absolutemin,
 	                    fp.optimummin,fp.optimummax,fp.absolutemax
                     FROM fuzzyparameter fp 
                     INNER JOIN growthstages gs ON fp.growthstages = gs.id";
@@ -64,9 +69,12 @@ namespace RPDSS.DataLayer.Repositories
             sql = @"SELECT id,name,min,max
                     FROM fuzzysuitabilityinterval";
             var fuzzySuitabilityInterval = db.Query<FuzzySuitabilityIntervalModel>(sql);
+            foreach (var item in fuzzySuitabilityInterval)
+            {
+                graphData.PlantingSuitability.Add(new PlantingSuitabilityModel() { PlantingSuitability = item, Months=string.Empty });
+            }
 
             // Temperatures
-
             IEnumerable<TemperatureModel> temperatures = new List<TemperatureModel>();
             if (year == 9999)
             {
@@ -116,7 +124,6 @@ namespace RPDSS.DataLayer.Repositories
             var rainfallType = 1;
             var temperatureType = 2;
 
-            var growthStage = growthStages.SingleOrDefault(x => x.Id == growthStageId);
             var fuzzyParamRainfall = fuzzyParameters.SingleOrDefault(x => x.GrowthStages == growthStageId && x.Type == rainfallType);
             var fuzzyParamTemperature = fuzzyParameters.SingleOrDefault(x => x.GrowthStages == growthStageId && x.Type == temperatureType);
 
@@ -132,7 +139,8 @@ namespace RPDSS.DataLayer.Repositories
                 var c = (decimal)fuzzyParamRainfall.OptimumMax;
                 var d = (decimal)fuzzyParamRainfall.AbsoluteMax;
 
-                graphData.Rainfalls.Add(this.GetFuzzyValue(x, a, b, c, d));
+                var fuzzyRainfallValue = this.GetFuzzyValue(x, a, b, c, d);
+                graphData.Rainfalls.Add(fuzzyRainfallValue);
 
                 // For temperature
                 var temperature = temperatures.SingleOrDefault(y => y.Month == item.Id);
@@ -142,11 +150,33 @@ namespace RPDSS.DataLayer.Repositories
                 c = (decimal)fuzzyParamTemperature.OptimumMax;
                 d = (decimal)fuzzyParamTemperature.AbsoluteMax;
 
-                graphData.Temperatures.Add(this.GetFuzzyValue(x, a, b, c, d));
+                var fuzzyTempValue = this.GetFuzzyValue(x, a, b, c, d);
+                graphData.Temperatures.Add(fuzzyTempValue);
 
+                // Check for suitability
+                foreach (var suitability in graphData.PlantingSuitability)
+                {
+                    if (this.IsSuitable(suitability.PlantingSuitability,fuzzyTempValue,fuzzyRainfallValue))
+                    {
+                        if (suitability.Months.Length > 0)
+                            suitability.Months += "," + item.Name;
+                        else
+                            suitability.Months += item.Name;
+                    }
+                }
             }
 
             return graphData;
+        }
+
+        private bool IsSuitable(FuzzySuitabilityIntervalModel suitability, decimal temp, decimal rainfall)
+        {
+            if ((temp >= suitability.Min && temp <= suitability.Max) &&
+                (rainfall >= suitability.Min && rainfall <= suitability.Max))
+            {
+                return true;
+            }
+            return false;
         }
 
         public CropCalendar GetCropCalendar(int rice, DateTime startdate)

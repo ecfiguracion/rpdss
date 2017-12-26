@@ -62,13 +62,7 @@
     <div class="col-md-5">
         <h4>Best Growth Stages Months</h4>
         <div class="well">
-            <dl class="dl-horizontal">
-                <dt>Nursery</dt>
-                <dd>Feb, March</dd>
-                <dt>Preparation</dt>
-                <dd>March, April</dd>
-                <dt>Panicle Initiation</dt>
-                <dd>April</dd>
+            <dl id="plantingSuitability" class="dl-horizontal">
             </dl>
         </div>
     </div>
@@ -265,6 +259,18 @@
             }
         }
 
+        function populatePlantingSuitability(data) {
+            $('#plantingSuitability').empty();
+
+            var trHTML = '';
+
+            $.each(data.plantingSuitability, function (i, item) {
+                trHTML += '<dt>' + item.plantingSuitability.name + '</dt><dd>' + item.monthsDisplay + '</dd>';
+            });
+
+            $('#plantingSuitability').append(trHTML);
+        }
+
         function RefreshPlantingSeasonData() {
             var paramYear = $('#yearsDropdown :selected').val();
             var paramGrowthStages = $('#growthStagesDropdown :selected').val();
@@ -279,6 +285,7 @@
                         refreshPlantingSeasonGraph(response);
                         populateTemperaturesData(response);
                         populateRainfallData(response);
+                        populatePlantingSuitability(response);
                     },
                     failure: function (response) {
                         alert(response.responseText);

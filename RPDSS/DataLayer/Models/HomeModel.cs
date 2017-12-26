@@ -5,6 +5,22 @@ using System.Threading.Tasks;
 
 namespace RPDSS.DataLayer.Models
 {
+    public class PlantingSuitabilityModel
+    {
+        public FuzzySuitabilityIntervalModel PlantingSuitability { get; set; }
+        public string Months { get; set; }
+        public string MonthsDisplay
+        {
+            get
+            {
+                if (this.Months.Length > 0)
+                    return this.Months;
+                else
+                    return "N/A";
+            }
+        }
+    }
+
     public class GraphData
     {
         public ICollection<string> Months { get; set; }
@@ -12,12 +28,14 @@ namespace RPDSS.DataLayer.Models
         public ICollection<decimal> Temperatures { get; set; }
         public IEnumerable<RainfallModel> RainfallData { get; set; }
         public IEnumerable<TemperatureModel> TemperatureData { get; set; }
+        public ICollection<PlantingSuitabilityModel> PlantingSuitability { get; set; }
 
         public GraphData()
         {
             this.Months = new List<string>();
             this.Rainfalls = new List<decimal>();
             this.Temperatures = new List<decimal>();
+            this.PlantingSuitability = new List<PlantingSuitabilityModel>();
         }
     }
 
